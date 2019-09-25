@@ -62,33 +62,27 @@ final class Building extends AggregateRoot
 
     public function whenCheckedIn(CheckedIn $event)
     {
-        if (in_array($event->username(), $this->checkedInUsers)) {
+        if (array_key_exists($event->username(), $this->checkedInUsers)) {
             throw new \DomainException(sprintf(
                 'User "%s" has already checked in.',
                 $event->username()
             ));
         }
 
-        $this->checkedInUsers[] = $event->username();
+        $this->checkedInUsers[$event->username()] = null;
 
     }
 
     public function whenCheckedOut(CheckedOut $event)
     {
-        $key = array_search(
-            $event->username(),
-            $this->checkedInUsers,
-            true
-        );
-
-        if (!is_int($key)) {
+        if (!array_key_exists($event->username(), $this->checkedInUsers)) {
             throw new \DomainException(sprintf(
                 'User "%s" has not checked in.',
                 $event->username()
             ));
         }
 
-        unset($this->checkedInUsers[$key]);
+        unset($this->checkedInUsers[$event->username()]);
     }
 
     /**
