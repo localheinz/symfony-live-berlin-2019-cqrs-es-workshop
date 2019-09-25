@@ -7,7 +7,7 @@
     "ext-pdo": "*",
     "ext-pdo_sqlite": "*",
     "bernard/bernard": "^1.0@DEV",
-    "doctrine/dbal": "~2.5",
+    "doctrine/dbal": "~2.9",
     "filp/whoops": "^2.5",
     "prooph/event-sourcing": "~4.0",
     "prooph/event-store": "^6.0",
