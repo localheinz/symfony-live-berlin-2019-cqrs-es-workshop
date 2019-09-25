@@ -20,20 +20,20 @@ final class RegisterNewBuilding extends Command
         $this->name = $name;
     }
 
-    public static function fromName(string $name) : self
+    public static function fromName(string $name): self
     {
         return new self($name);
     }
 
-    public function name() : string
+    public function name(): string
     {
         return $this->name;
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    public function payload() : array
+    public function payload(): array
     {
         return [
             'name' => $this->name,
@@ -41,9 +41,9 @@ final class RegisterNewBuilding extends Command
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    protected function setPayload(array $payload)
+    protected function setPayload(array $payload): void
     {
         $this->name = $payload['name'];
     }

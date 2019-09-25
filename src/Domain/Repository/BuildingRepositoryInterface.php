@@ -10,5 +10,6 @@ use Rhumsaa\Uuid\Uuid;
 interface BuildingRepositoryInterface
 {
     public function store(Building $building);
-    public function get(Uuid $id) : Building;
+
+    public function get(Uuid $id): Building;
 }

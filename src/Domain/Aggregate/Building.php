@@ -20,40 +20,40 @@ final class Building extends AggregateRoot
      */
     private $name;
 
-    public static function new(string $name) : self
+    public static function new(string $name): self
     {
         $self = new self();
 
         $self->recordThat(NewBuildingWasRegistered::occur(
             (string) Uuid::uuid4(),
             [
-                'name' => $name
+                'name' => $name,
             ]
         ));
 
         return $self;
     }
 
-    public function checkInUser(string $username)
+    public function checkInUser(string $username): void
     {
         // @TODO to be implemented
     }
 
-    public function checkOutUser(string $username)
+    public function checkOutUser(string $username): void
     {
         // @TODO to be implemented
     }
 
-    public function whenNewBuildingWasRegistered(NewBuildingWasRegistered $event)
+    public function whenNewBuildingWasRegistered(NewBuildingWasRegistered $event): void
     {
         $this->uuid = Uuid::fromString($event->aggregateId());
         $this->name = $event->name();
     }
 
     /**
-     * {@inheritDoc}
+     * {@inheritdoc}
      */
-    protected function aggregateId() : string
+    protected function aggregateId(): string
     {
         return (string) $this->uuid;
     }

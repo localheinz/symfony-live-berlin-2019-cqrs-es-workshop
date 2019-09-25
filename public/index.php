@@ -15,9 +15,9 @@ use Zend\Expressive\Application;
 use Zend\Expressive\Router\FastRouteRouter;
 use Zend\Expressive\WhoopsErrorHandler;
 
-call_user_func(function () {
-    error_reporting(E_ALL);
-    ini_set('display_errors', '1');
+\call_user_func(function (): void {
+    \error_reporting(\E_ALL);
+    \ini_set('display_errors', '1');
 
     $sm = require __DIR__ . '/../container.php';
 
@@ -27,7 +27,7 @@ call_user_func(function () {
 
     // Error handling so that our eyes don't bleed: don't do this in production!
     $whoopsHandler = new PrettyPageHandler();
-    $whoops        = new Run();
+    $whoops = new Run();
 
     $whoops->writeToOutput(false);
     $whoops->allowQuit(false);
@@ -37,41 +37,41 @@ call_user_func(function () {
 
     $app->pipeRoutingMiddleware();
 
-    $app->get('/', function (Request $request, Response $response) : Response {
-        ob_start();
+    $app->get('/', function (Request $request, Response $response): Response {
+        \ob_start();
+
         require __DIR__ . '/../template/index.php';
-        $content = ob_get_clean();
+        $content = \ob_get_clean();
 
         $response->getBody()->write($content);
 
         return $response;
     });
 
-    $app->post('/register-new-building', function (Request $request, Response $response) use ($sm) : Response {
+    $app->post('/register-new-building', static function (Request $request, Response $response) use ($sm): Response {
         $commandBus = $sm->get(CommandBus::class);
         $commandBus->dispatch(Command\RegisterNewBuilding::fromName($request->getParsedBody()['name']));
 
         return $response->withAddedHeader('Location', '/');
     });
 
-    $app->get('/building/{buildingId}', function (Request $request, Response $response) : Response {
+    $app->get('/building/{buildingId}', function (Request $request, Response $response): Response {
         $buildingId = Uuid::fromString($request->getAttribute('buildingId'));
 
-        ob_start();
+        \ob_start();
+
         require __DIR__ . '/../template/building.php';
-        $content = ob_get_clean();
+        $content = \ob_get_clean();
 
         $response->getBody()->write($content);
 
         return $response;
     });
 
-    $app->post('/checkin/{buildingId}', function (Request $request, Response $response) use ($sm) : Response {
-
+    $app->post('/checkin/{buildingId}', static function (Request $request, Response $response) use ($sm): Response {
     });
 
-    $app->post('/checkout/{buildingId}', function (Request $request, Response $response) use ($sm) : Response {
-
+    $app->post('/checkout/{buildingId}', static function (Request $request, Response $response) use ($sm): Response {
     });
 
     $app->pipeDispatchMiddleware();
