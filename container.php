@@ -203,9 +203,22 @@ return new ServiceManager([
             $buildings = $container->get(BuildingRepositoryInterface::class);
 
             return static function (Command\CheckIn $command) use ($buildings) {
+                /** @var Building $building */
                 $building = $buildings->get($command->buildingId());
 
                 $building->checkInUser($command->username());
+
+                $buildings->store($building);
+            };
+        },
+        Command\CheckOut::class => static function (ContainerInterface $container) : callable {
+            $buildings = $container->get(BuildingRepositoryInterface::class);
+
+            return static function (Command\CheckOut $command) use ($buildings) {
+                /** @var Building $building */
+                $building = $buildings->get($command->buildingId());
+
+                $building->checkOutUser($command->username());
 
                 $buildings->store($building);
             };
