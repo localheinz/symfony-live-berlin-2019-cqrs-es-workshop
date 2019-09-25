@@ -6,6 +6,8 @@ namespace Building\Domain\Aggregate;
 
 use Building\Domain\DomainEvent\CheckedIn;
 use Building\Domain\DomainEvent\CheckedOut;
+use Building\Domain\DomainEvent\CheckInAnomalyDetected;
+use Building\Domain\DomainEvent\CheckOutAnomalyDetected;
 use Building\Domain\DomainEvent\NewBuildingWasRegistered;
 use Prooph\EventSourcing\AggregateRoot;
 use Rhumsaa\Uuid\Uuid;
@@ -40,32 +42,36 @@ final class Building extends AggregateRoot
 
     public function checkInUser(string $username)
     {
-        if (array_key_exists($username, $this->checkedInUsers)) {
-            throw new \DomainException(sprintf(
-                'User "%s" has already checked in.',
-                $username
-            ));
-        }
+        $anomalyDetected = array_key_exists($username, $this->checkedInUsers);
 
         $this->recordThat(CheckedIn::toBuilding(
             $this->uuid,
             $username
         ));
+
+        if ($anomalyDetected) {
+            $this->recordThat(CheckInAnomalyDetected::inBuildingForUser(
+                $this->uuid,
+                $username
+            ));
+        }
     }
 
     public function checkOutUser(string $username)
     {
-        if (!array_key_exists($username, $this->checkedInUsers)) {
-            throw new \DomainException(sprintf(
-                'User "%s" has not checked in.',
-                $username
-            ));
-        }
+        $anomalyDetected = !array_key_exists($username, $this->checkedInUsers);
 
         $this->recordThat(CheckedOut::ofBuilding(
             $this->uuid,
             $username
         ));
+
+        if ($anomalyDetected) {
+            $this->recordThat(CheckOutAnomalyDetected::inBuildingForUser(
+                $this->uuid,
+                $username
+            ));
+        }
     }
 
     public function whenNewBuildingWasRegistered(NewBuildingWasRegistered $event)
@@ -83,6 +89,16 @@ final class Building extends AggregateRoot
     public function whenCheckedOut(CheckedOut $event)
     {
         unset($this->checkedInUsers[$event->username()]);
+    }
+
+    public function whenCheckInAnomalyDetected(CheckInAnomalyDetected $event)
+    {
+
+    }
+
+    public function whenCheckOutAnomalyDetected(CheckOutAnomalyDetected $event)
+    {
+
     }
 
     /**

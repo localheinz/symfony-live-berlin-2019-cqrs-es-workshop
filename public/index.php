@@ -18,6 +18,8 @@ use Zend\Expressive\WhoopsErrorHandler;
 call_user_func(function () {
     error_reporting(E_ALL);
     ini_set('display_errors', '1');
+    ini_set('display_startup_errors', '1');
+    ini_set('error_log', __DIR__ . '/../data/error.log');
 
     $sm = require __DIR__ . '/../container.php';
 

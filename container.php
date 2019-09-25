@@ -11,6 +11,7 @@ use Bernard\QueueFactory;
 use Bernard\QueueFactory\PersistentFactory;
 use Building\Domain\Aggregate\Building;
 use Building\Domain\Command;
+use Building\Domain\DomainEvent;
 use Building\Domain\Repository\BuildingRepositoryInterface;
 use Building\Infrastructure\Repository\BuildingRepository;
 use Doctrine\DBAL\Connection;
@@ -222,6 +223,48 @@ return new ServiceManager([
 
                 $buildings->store($building);
             };
+        },
+        Command\NotifySecurityOfCheckInAnomaly::class => static function () : callable {
+            return static function (Command\NotifySecurityOfCheckInAnomaly $command) {
+                \error_log(\sprintf(
+                    'User "%s" attempted to check in to "%s" but was already checked in.',
+                    $command->username(),
+                    $command->buildingId()->toString()
+                ));
+            };
+        },
+        Command\NotifySecurityOfCheckOutAnomaly::class => static function () : callable {
+            return static function (Command\NotifySecurityOfCheckOutAnomaly $command) {
+                \error_log(\sprintf(
+                    'User "%s" attempted to check out of "%s" but was not checked in.',
+                    $command->username(),
+                    $command->buildingId()->toString()
+                ));
+            };
+        },
+        DomainEvent\CheckInAnomalyDetected::class . '-listeners' => static function (ContainerInterface $container) : array {
+            $commandBus = $container->get(CommandBus::class);
+
+            return [
+                static function (DomainEvent\CheckInAnomalyDetected $event) use ($commandBus) {
+                    $commandBus->dispatch(Command\NotifySecurityOfCheckInAnomaly::inBuilding(
+                        $event->buildingId(),
+                        $event->username()
+                    ));
+                },
+            ];
+        },
+        DomainEvent\CheckOutAnomalyDetected::class . '-listeners' => static function (ContainerInterface $container) : array {
+            $commandBus = $container->get(CommandBus::class);
+
+            return [
+                static function (DomainEvent\CheckOutAnomalyDetected $event) use ($commandBus) {
+                    $commandBus->dispatch(Command\NotifySecurityOfCheckOutAnomaly::inBuilding(
+                        $event->buildingId(),
+                        $event->username()
+                    ));
+                },
+            ];
         },
         BuildingRepositoryInterface::class => function (ContainerInterface $container) : BuildingRepositoryInterface {
             return new BuildingRepository(
