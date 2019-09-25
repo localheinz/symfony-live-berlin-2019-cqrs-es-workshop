@@ -14,7 +14,7 @@ serve: vendor ## Serves the site locally
 
 test: vendor ## Runs auto-review, unit, and integration tests with phpunit
 	mkdir -p .build/phpunit
-	vendor/bin/phpunit --configuration=phpunit.xml
+	vendor/bin/phpunit --configuration=test/Unit/phpunit.xml
 
 vendor: composer.json composer.lock
 	composer validate --strict
