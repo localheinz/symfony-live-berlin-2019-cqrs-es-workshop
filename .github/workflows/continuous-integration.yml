@@ -38,7 +38,6 @@ jobs:
         uses: actions/checkout@master
 
       - name: "Install locked dependencies with composer"
-        if: matrix.dependencies == 'locked'
         run: php7.3 $(which composer) install --no-interaction --no-progress --no-suggest
 
       - name: "Run unit tests with phpunit/phpunit"
