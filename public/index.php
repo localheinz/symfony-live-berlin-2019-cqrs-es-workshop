@@ -15,7 +15,7 @@ use Zend\Expressive\Application;
 use Zend\Expressive\Router\FastRouteRouter;
 use Zend\Expressive\WhoopsErrorHandler;
 
-\call_user_func(function (): void {
+(function (): void {
     \error_reporting(\E_ALL);
     \ini_set('display_errors', '1');
 
@@ -78,4 +78,4 @@ use Zend\Expressive\WhoopsErrorHandler;
 
     $whoops->register();
     $app->run();
-});
+})();
