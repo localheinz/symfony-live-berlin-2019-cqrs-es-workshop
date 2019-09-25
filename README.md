@@ -1,3 +1,5 @@
+[![CI Status](https://github.com/localheinz/symfony-live-berlin-2019-cqrs-es-workshop/workflows/Continuous%20Integration/badge.svg)](https://github.com/localheinz/symfony-live-berlin-2019-cqrs-es-workshop/actions)
+
 ### Basic CQRS and Event Sourcing with Prooph
 
 This is an example application aimed at teaching basic event sourcing.
