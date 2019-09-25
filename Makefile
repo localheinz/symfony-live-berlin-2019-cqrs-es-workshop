@@ -1,4 +1,4 @@
-.PHONY: cs help it test
+.PHONY: cs help it serve test
 
 it: cs test ## Runs the cs and test targets
 
@@ -8,6 +8,9 @@ cs: vendor ## Fixes code style issues with php-cs-fixer
 
 help: ## Displays this list of targets with descriptions
 	@grep -E '^[a-zA-Z0-9_-]+:.*?## .*$$' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[32m%-30s\033[0m %s\n", $$1, $$2}'
+
+serve: vendor ## Serves the site locally
+	php -S localhost:8080 -t public
 
 test: vendor ## Runs auto-review, unit, and integration tests with phpunit
 	mkdir -p .build/phpunit
