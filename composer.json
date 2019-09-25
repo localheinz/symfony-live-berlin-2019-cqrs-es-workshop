@@ -1,4 +1,7 @@
 {
+  "name": "localheinz/symfony-live-berlin-2019-cqrs-es-workshop",
+  "description": "An application used for Marco Pivetta's workshop during SymfonyLive 2019 in Berlin.",
+  "license": "MIT",
   "require": {
     "php": "^7.0",
     "ext-pdo": "*",
