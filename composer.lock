@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4662ccd079733982b1a6a67dfda3e06c",
+    "content-hash": "985ea3eefa5721cc28e53a896c936c9e",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -67,12 +67,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bernardphp/bernard.git",
-                "reference": "eab0f25453657aa5e0b5efa01df1e0584a2a24a9"
+                "reference": "fee41761e8a22dcec9e535d530ccf52204b64022"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bernardphp/bernard/zipball/eab0f25453657aa5e0b5efa01df1e0584a2a24a9",
-                "reference": "eab0f25453657aa5e0b5efa01df1e0584a2a24a9",
+                "url": "https://api.github.com/repos/bernardphp/bernard/zipball/fee41761e8a22dcec9e535d530ccf52204b64022",
+                "reference": "fee41761e8a22dcec9e535d530ccf52204b64022",
                 "shasum": ""
             },
             "require": {
@@ -132,7 +132,7 @@
                 "message queue",
                 "queue"
             ],
-            "time": "2019-08-08T12:41:23+00:00"
+            "time": "2019-10-20T16:07:51+00:00"
         },
         {
             "name": "bernard/normalt",
@@ -1124,16 +1124,16 @@
         },
         {
             "name": "prooph/event-store-doctrine-adapter",
-            "version": "v3.2.1",
+            "version": "v3.3.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/prooph/event-store-doctrine-adapter.git",
-                "reference": "8e62f0d4dfcb09735c942c59fb9671a7ce57168b"
+                "reference": "1d749dd053356def9e5513c18e7c2cfdc1b96425"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/prooph/event-store-doctrine-adapter/zipball/8e62f0d4dfcb09735c942c59fb9671a7ce57168b",
-                "reference": "8e62f0d4dfcb09735c942c59fb9671a7ce57168b",
+                "url": "https://api.github.com/repos/prooph/event-store-doctrine-adapter/zipball/1d749dd053356def9e5513c18e7c2cfdc1b96425",
+                "reference": "1d749dd053356def9e5513c18e7c2cfdc1b96425",
                 "shasum": ""
             },
             "require": {
@@ -1186,7 +1186,7 @@
             ],
             "description": "Doctrine Adapter for ProophEventStore",
             "homepage": "http://getprooph.org/",
-            "time": "2016-06-28T19:49:20+00:00"
+            "time": "2016-10-12T18:32:28+00:00"
         },
         {
             "name": "prooph/psb-bernard-producer",
