@@ -7,7 +7,7 @@
     "doctrine/dbal": "~2.5",
     "filp/whoops": "^2.1",
     "prooph/event-sourcing": "~4.0",
-    "prooph/event-store": "^6.0",
+    "prooph/event-store": "^6.6",
     "prooph/event-store-bus-bridge": "^2.0",
     "prooph/event-store-doctrine-adapter": "^3.0",
     "prooph/psb-bernard-producer": "^2.0",

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "4662ccd079733982b1a6a67dfda3e06c",
+    "content-hash": "1398f3ac1da8b6add7c07a04392af431",
     "packages": [
         {
             "name": "beberlei/assert",
@@ -67,12 +67,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/bernardphp/bernard.git",
-                "reference": "eab0f25453657aa5e0b5efa01df1e0584a2a24a9"
+                "reference": "fee41761e8a22dcec9e535d530ccf52204b64022"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/bernardphp/bernard/zipball/eab0f25453657aa5e0b5efa01df1e0584a2a24a9",
-                "reference": "eab0f25453657aa5e0b5efa01df1e0584a2a24a9",
+                "url": "https://api.github.com/repos/bernardphp/bernard/zipball/fee41761e8a22dcec9e535d530ccf52204b64022",
+                "reference": "fee41761e8a22dcec9e535d530ccf52204b64022",
                 "shasum": ""
             },
             "require": {
@@ -132,7 +132,7 @@
                 "message queue",
                 "queue"
             ],
-            "time": "2019-08-08T12:41:23+00:00"
+            "time": "2019-10-20T16:07:51+00:00"
         },
         {
             "name": "bernard/normalt",
@@ -992,16 +992,16 @@
         },
         {
             "name": "prooph/event-store",
-            "version": "v6.4.0",
+            "version": "v6.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/prooph/event-store.git",
-                "reference": "63f8dca3e7ebff44cf02a02c97d5a3cc980d2633"
+                "reference": "dfe60b52292f80848e0c44f9f13befca66fe86c6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/prooph/event-store/zipball/63f8dca3e7ebff44cf02a02c97d5a3cc980d2633",
-                "reference": "63f8dca3e7ebff44cf02a02c97d5a3cc980d2633",
+                "url": "https://api.github.com/repos/prooph/event-store/zipball/dfe60b52292f80848e0c44f9f13befca66fe86c6",
+                "reference": "dfe60b52292f80848e0c44f9f13befca66fe86c6",
                 "shasum": ""
             },
             "require": {
@@ -1064,7 +1064,7 @@
                 "ddd",
                 "prooph"
             ],
-            "time": "2016-09-05T09:15:14+00:00"
+            "time": "2017-12-17T08:38:18+00:00"
         },
         {
             "name": "prooph/event-store-bus-bridge",
